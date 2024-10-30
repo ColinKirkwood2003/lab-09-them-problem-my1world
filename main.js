@@ -34,20 +34,23 @@ function getThey(you) {
     "poppin'": "stoppin'",
     "packin'": "lackin'",
   }
-  let result = null;
-  if (options[you]) {
-    result = options[you]
-  }
-  return result;
+  return Promise.resolve(options[you]);
 }
 
+function getOptions(){
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(["poppin", "packin"]); 
+    }, 1000);
+  });
+}
 
 function init(ev) {
 
   // FIXME: notice above that getYous just returns a literal.
   // you should update the code below to instead call getOptions.
   // getOptions expects no arguments, and returns a promise that resolves to an array of strings.
-  const options = getYous()
+  const options = getOptions();
   updateRadio(options)
 
   document.querySelectorAll("input[type='radio']").forEach((input) => {
