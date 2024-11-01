@@ -65,9 +65,10 @@ function changed(ev) {
   // FIXME: notice above that getThemProblem just returns a literal.
   // you should update the code below to instead call getThemProblem.
   // getThemProblem expects a string parameter (the only valid strings are those returned by getOptions), and returns a promise that resolves to a string.
-  const they = getThey(you)
-  const output = document.getElementById('they')
-  output.textContent = they
+  getThey(you).then((they) => {
+    const output = document.getElementById('they')
+    output.textContent = they
+  });
 }
 
 document.addEventListener("DOMContentLoaded", init);
